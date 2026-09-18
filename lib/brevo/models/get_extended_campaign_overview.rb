@@ -68,6 +68,9 @@ module Brevo
     # utm id
     attr_accessor :utm_id
 
+    # The utm_id value applied to the campaign's tracking links, returned verbatim as a string. Falls back to your account's global UTM settings when no custom value was set on the campaign. Only returned when UTM tracking is enabled on the campaign and a value is set at one of these levels. Preferred field for new consumers — covers both numeric IDs and customer-supplied non-numeric strings. (JSON key `utmId` — distinct from the legacy `utmID`.)
+    attr_accessor :utm_id_string
+
     # Retrieved the status of test email sending. (true=Test email has been sent  false=Test email has not been sent)
     attr_accessor :test_sent
 
@@ -158,6 +161,7 @@ module Brevo
         :'utm_source' => :'utmSource',
         :'utm_medium' => :'utmMedium',
         :'utm_id' => :'utmID',
+        :'utm_id_string' => :'utmId',
         :'test_sent' => :'testSent',
         :'header' => :'header',
         :'footer' => :'footer',
@@ -198,6 +202,7 @@ module Brevo
         :'utm_source' => :'String',
         :'utm_medium' => :'String',
         :'utm_id' => :'Integer',
+        :'utm_id_string' => :'String',
         :'test_sent' => :'BOOLEAN',
         :'header' => :'String',
         :'footer' => :'String',
@@ -295,6 +300,10 @@ module Brevo
 
       if attributes.has_key?(:'utmID')
         self.utm_id = attributes[:'utmID']
+      end
+
+      if attributes.has_key?(:'utmId')
+        self.utm_id_string = attributes[:'utmId']
       end
 
       if attributes.has_key?(:'testSent')
@@ -482,6 +491,7 @@ module Brevo
           utm_source == o.utm_source &&
           utm_medium == o.utm_medium &&
           utm_id == o.utm_id &&
+          utm_id_string == o.utm_id_string &&
           test_sent == o.test_sent &&
           header == o.header &&
           footer == o.footer &&
@@ -509,7 +519,7 @@ module Brevo
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, subject, preview_text, type, status, scheduled_at, ab_testing, subject_a, subject_b, split_rule, winner_criteria, winner_delay, send_at_best_time, utm_campaign_value, utm_source, utm_medium, utm_id, test_sent, header, footer, sender, reply_to, to_field, html_content, share_link, tag, created_at, modified_at, inline_image_activation, mirror_active, recurring, sent_date, return_bounce].hash
+      [id, name, subject, preview_text, type, status, scheduled_at, ab_testing, subject_a, subject_b, split_rule, winner_criteria, winner_delay, send_at_best_time, utm_campaign_value, utm_source, utm_medium, utm_id, utm_id_string, test_sent, header, footer, sender, reply_to, to_field, html_content, share_link, tag, created_at, modified_at, inline_image_activation, mirror_active, recurring, sent_date, return_bounce].hash
     end
 
     # Builds the object from hash
