@@ -56,16 +56,16 @@ module Brevo
     # It is true if you have chosen to send your campaign at best time, otherwise it is false
     attr_accessor :send_at_best_time
 
-    # utm parameter associated with campaign
+    # The utm_campaign value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the campaign name if neither is configured. Only returned when UTM tracking is enabled on the campaign.
     attr_accessor :utm_campaign_value
 
-    # source of utm parameter
+    # The utm_source value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the account default (`brevo` or `sendinblue`) if neither is configured. Case is preserved verbatim. Only returned when UTM tracking is enabled on the campaign.
     attr_accessor :utm_source
 
-    # medium parameter
+    # The utm_medium value applied to the campaign's tracking links. Falls back to your account's global UTM settings when no custom value was set on the campaign, or the default `email` if neither is configured. Case is preserved verbatim. Only returned when UTM tracking is enabled on the campaign.
     attr_accessor :utm_medium
 
-    # utm id
+    # Legacy numeric utm_id value applied to the campaign's tracking links. Present only when UTM tracking is enabled on the campaign and the resolved utm_id is numeric (typically the campaign's ID). For customer-supplied non-numeric values (for example `promo_042`), read utm_id_string (wire key `utmId`) instead. Kept for backward compatibility.
     attr_accessor :utm_id
 
     # The utm_id value applied to the campaign's tracking links, returned verbatim as a string. Falls back to your account's global UTM settings when no custom value was set on the campaign. Only returned when UTM tracking is enabled on the campaign and a value is set at one of these levels. Preferred field for new consumers — covers both numeric IDs and customer-supplied non-numeric strings. (JSON key `utmId` — distinct from the legacy `utmID`.)
